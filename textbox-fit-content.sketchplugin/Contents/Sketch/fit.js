@@ -1,4 +1,14 @@
-function onRun( context ) {
+var trim  = true;
+function runWithTrim(context){
+	trim = true;
+	run(context);
+}
+function runWithoutTrim(context){
+	trim = false;
+	run(context);
+}
+
+function run( context ) {
 	var selectedLayers = context.selection;
 	var selectedCount = selectedLayers.count();
 
@@ -23,7 +33,12 @@ function checkLayer( layer ) {
 	}
 }
 
-function fitLayer( textLayer ) {
+function fitLayer( textLayer) {
+	if(trim){
+		var content = textLayer.stringValue();
+		textLayer.setStringValue(content.replace(/^\s+|\s+$/g, '').trim())
+	}
+
 	var fontSize = textLayer.fontSize();
 	var baselineOffsets = textLayer.baselineOffsets();
 	var textHeight = baselineOffsets[ baselineOffsets.length - 1 ] + fontSize / 4;

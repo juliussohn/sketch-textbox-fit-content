@@ -8,10 +8,17 @@
   "commands": [
     {
       "script": "fit.js",
-      "handler": "onRun",
+      "handler": "runWithTrim",
       "shortcut": "command shift f",
-      "name": "Set height to content height",
-      "identifier": "fit"
+      "name": "Trim and fit text",
+      "identifier": "fitWithTrim"
+    },
+    {
+      "script": "fit.js",
+      "handler": "runWithoutTrim",
+      "shortcut": "command alt shift f",
+      "name": "Fit text",
+      "identifier": "fitWithoutTrim"
     }
   ]
 }
