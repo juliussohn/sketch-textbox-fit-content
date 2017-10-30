@@ -1,7 +1,7 @@
 # Textbox fit Content - Sketch Plugin
 This plugin sets the height of a selected text layer or all text layers in a selected group to it's content's height.
 
-![Plugin preview](https://raw.githubusercontent.com/juliussohn/sketch-paste-in-order/master/preview.gif)
+![Plugin preview](https://github.com/juliussohn/sketch-textbox-fit-content/blob/master/preview.gif)
 
 
 ## Usage
