@@ -5,6 +5,10 @@ This plugin sets the height of a selected text layer or all text layers in a sel
 
 
 ## Usage
-1. Select a text layer or a group containing text layers
-2a. To remove whitespace and linebreaks on the beginning and end of the text select `Plugins` > `Textbox fit Content` > `Trim and fit text` or press  `⌘`+ `Shift`+`F`
-2b. To keep all whitespace and linebreaks on the beginning and end of the text select `Plugins` > `Textbox fit Content` > `Fit text` or press  `⌘`+`alt`+`Shift`+`F`
+Select a text layer or a group containing text layers.
+
+To remove whitespace and linebreaks on the beginning and end of the text select `Plugins` > `Textbox fit Content` > `Trim and fit text` or press  `⌘`+ `Shift`+`F`
+
+or
+
+To keep all whitespace and linebreaks on the beginning and end of the text select `Plugins` > `Textbox fit Content` > `Fit text` or press  `⌘`+`alt`+`Shift`+`F`
