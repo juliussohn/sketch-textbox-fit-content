@@ -1,0 +1,17 @@
+{
+  "name": "Textbox fit content",
+  "identifier": "juliussohn.textboxfitcontent",
+  "version": "1.0",
+  "description": "Set the height of the selected textbox to its content's height.",
+  "authorEmail": "juiussohn@icloud.com",
+  "author": "Julius Sohn",
+  "commands": [
+    {
+      "script": "fit.js",
+      "handler": "onRun",
+      "shortcut": "command shift f",
+      "name": "Set height to content height",
+      "identifier": "fit"
+    }
+  ]
+}
