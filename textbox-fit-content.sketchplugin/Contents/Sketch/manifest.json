@@ -1,7 +1,7 @@
 {
   "name": "Textbox fit content",
   "identifier": "juliussohn.textboxfitcontent",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Set the height of the selected textbox to its content's height.",
   "authorEmail": "juiussohn@icloud.com",
   "author": "Julius Sohn",

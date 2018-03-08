@@ -1,4 +1,7 @@
+var Group = require('sketch/dom').Group
+var Text = require('sketch/dom').Text
 var trim  = true;
+
 function runWithTrim(context){
 	trim = true;
 	run(context);
@@ -30,6 +33,8 @@ function checkLayer( layer ) {
 		for(var i= 0; i<[layers count]; i++){
 			checkLayer(layers[i]);
 		}
+        Group.fromNative(layer).adjustToFit()
+
 	}
 }
 
@@ -39,8 +44,9 @@ function fitLayer( textLayer) {
 		textLayer.setStringValue(content.replace(/^\s+|\s+$/g, '').trim())
 	}
 
+    
 	var fontSize = textLayer.fontSize();
-	var baselineOffsets = textLayer.baselineOffsets();
+	var baselineOffsets = textLayer.immutableModelObject().textLayout().baselineOffsets();
 	var textHeight = baselineOffsets[ baselineOffsets.length - 1 ] + fontSize / 4;
 	textLayer.frame().height = textHeight;
 }
