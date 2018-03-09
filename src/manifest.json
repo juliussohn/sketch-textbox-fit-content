@@ -1,18 +1,20 @@
 {
   "compatibleVersion": 3,
   "bundleVersion": 1,
-  "icon": "icon.png",
-  "commands": [
+  "commands":[
     {
-      "name": "my-command",
-      "identifier": "my-command-identifier",
-      "script": "./my-command.js"
+      "script": "fit.js",
+      "handler": "runWithTrim",
+      "shortcut": "command shift f",
+      "name": "Trim and fit text",
+      "identifier": "fitWithTrim"
+    },
+    {
+      "script": "fit.js",
+      "handler": "runWithoutTrim",
+      "shortcut": "command alt shift f",
+      "name": "Fit text",
+      "identifier": "fitWithoutTrim"
     }
-  ],
-  "menu": {
-    "title": "sketch-textbox-fit-content",
-    "items": [
-      "my-command-identifier"
-    ]
-  }
+  ]
 }

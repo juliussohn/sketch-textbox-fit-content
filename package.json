@@ -1,13 +1,14 @@
 {
   "name": "sketch-textbox-fit-content",
-  "version": "0.1.0",
+  "version": "1.1.0",
+  "description": "This plugin sets the height of a selected text layer or all text layers in a selected group to it's content's height.",
   "engines": {
     "sketch": ">=3.0"
   },
   "skpm": {
-    "name": "sketch-textbox-fit-content",
+    "name": "Textbox fit content",
     "manifest": "src/manifest.json",
-    "main": "plugin.sketchplugin",
+    "main": "sketch-textbox-fit-content.sketchplugin",
     "assets": [
       "assets/**/*"
     ]
@@ -17,6 +18,10 @@
     "watch": "skpm-build --watch",
     "start": "skpm-build --watch --run",
     "postinstall": "npm run build && skpm-link"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliussohn/sketch-textbox-fit-content.git"
   },
   "devDependencies": {
     "@skpm/builder": "^0.4.0"
