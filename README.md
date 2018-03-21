@@ -26,13 +26,9 @@ Select  `Plugins` > `Textbox fit Content` > `Toggle auto-fit text` or press  `âŒ
 
 ### 1.3.0
 
-#### Added
 [New] Auto fit mode: Automatically adjust text box size when it's content changes
 
 ### 1.2.0
 
-#### Fixed
 [Fixed] \> 48.1 compatibilty
-
-#### Added
 [New] Plugin update Support
