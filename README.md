@@ -31,4 +31,5 @@ Select  `Plugins` > `Textbox fit Content` > `Toggle auto-fit text` or press  `âŒ
 ### 1.2.0
 
 [Fixed] \> 48.1 compatibilty
+
 [New] Plugin update Support
