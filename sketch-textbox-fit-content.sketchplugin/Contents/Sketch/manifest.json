@@ -7,19 +7,45 @@
       "handler": "runWithTrim",
       "shortcut": "command shift f",
       "name": "Trim and fit text",
-      "identifier": "fitWithTrim"
+      "identifier": "tfc.fitWithTrim"
     },
     {
       "script": "fit.js",
       "handler": "runWithoutTrim",
       "shortcut": "command alt shift f",
       "name": "Fit text",
-      "identifier": "fitWithoutTrim"
+      "identifier": "tfc.fitWithoutTrim"
+    },
+    {
+      "script": "fit.js",
+      "handler": "toggleAutoResizing",
+      "name": "Toggle auto-fit text",
+      "shortcut": "command ctrl shift f",
+      "identifier": "tfc.toggleAutoResizing"
+    },
+    {
+      "script": "fit.js",
+      "handlers": {
+        "actions": {
+          "TextChanged.finish": "onTextChanged"
+        }
+      },
+      "name": "Auto resize",
+      "identifier": "tfc.autoResize"
     }
   ],
-  "version": "1.1.0",
+  "menu": {
+    "title": "Textbox fit content",
+    "items": [
+      "tfc.fitWithTrim",
+      "tfc.fitWithoutTrim",
+      "-",
+      "tfc.toggleAutoResizing"
+    ]
+  },
+  "version": "1.2.0",
   "description": "This plugin sets the height of a selected text layer or all text layers in a selected group to it's content's height.",
-  "name": "Textbox fit content",
+  "name": "Text box fit content",
   "disableCocoaScriptPreprocessor": true,
   "appcast": "https://raw.githubusercontent.com/juliussohn/sketch-textbox-fit-content/master/.appcast.xml",
   "author": "Julius Sohn",

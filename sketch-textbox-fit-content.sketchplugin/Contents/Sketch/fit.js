@@ -83,9 +83,18 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.runWithTrim = runWithTrim;
 exports.runWithoutTrim = runWithoutTrim;
+exports.onTextChanged = onTextChanged;
+exports.toggleAutoResizing = toggleAutoResizing;
+exports.run = run;
 var Group = __webpack_require__(0).Group;
+var Rectangle = __webpack_require__(0).Rectangle;
 var Text = __webpack_require__(0).Text;
+var UI = __webpack_require__(2);
+var Settings = __webpack_require__(3);
+var Document = __webpack_require__(0).Document;
+var document = Document.getSelectedDocument();
 var trim = true;
+
 function runWithTrim(context) {
 	trim = true;
 	run(context);
@@ -95,25 +104,43 @@ function runWithoutTrim(context) {
 	run(context);
 }
 
+function onTextChanged(context) {
+	var autoResize = Settings.settingForKey('auto-resize');
+	if (autoResize) {
+		runWithoutTrim(context);
+	}
+}
+
+function toggleAutoResizing(context) {
+	var autoResize = Settings.settingForKey('auto-resize');
+
+	if (!autoResize) {
+		Settings.setSettingForKey('auto-resize', true);
+		UI.message('✅ Text box auto-fit enabled ');
+		runWithoutTrim();
+	} else {
+		Settings.setSettingForKey('auto-resize', false);
+		UI.message('❌ Text box auto-fit disabled');
+	}
+}
+
 function run(context) {
-	var selectedLayers = context.selection;
-	var selectedCount = selectedLayers.count();
+	var selectedLayers = document.selectedLayers;
+	var selectedCount = selectedLayers.length;
 
 	if (selectedCount === 0) {
-		context.document.showMessage('No layers selected.');
+		UI.message('No layers selected.');
 	} else {
-		for (var i = 0; i < selectedCount; i++) {
-			var layer = selectedLayers[i];
-			checkLayer(layer);
-		}
+		selectedLayers.forEach(function (layer) {
+			return checkLayer(layer);
+		});
 	}
 }
 
 function checkLayer(layer) {
-
-	if (layer.isMemberOfClass(MSTextLayer) === 1) {
+	if (layer.type === "Text") {
 		fitLayer(layer);
-	} else if (layer.isMemberOfClass(MSLayerGroup) === 1) {
+	} else if (layer.type === "Group") {
 		var layers = layer.layers();
 		for (var i = 0; i < layers.count(); i++) {
 			checkLayer(layers[i]);
@@ -124,15 +151,26 @@ function checkLayer(layer) {
 
 function fitLayer(textLayer) {
 	if (trim) {
-		var content = textLayer.stringValue();
-		textLayer.setStringValue(content.replace(/^\s+|\s+$/g, '').trim());
+		var content = textLayer.sketchObject.stringValue();
+		textLayer.sketchObject.setStringValue(content.replace(/^\s+|\s+$/g, '').trim());
 	}
 
-	var fontSize = textLayer.fontSize();
-	var baselineOffsets = textLayer.immutableModelObject().textLayout().baselineOffsets();
-	var textHeight = baselineOffsets[baselineOffsets.length - 1] + fontSize / 4;
-	textLayer.frame().height = textHeight;
+	var lineCount = textLayer.fragments.length;
+	var baseHeight = textLayer.fragments[lineCount - 1].rect.y + textLayer.fragments[lineCount - 1].rect.height;
+	textLayer.sketchObject.frame().height = baseHeight;
 }
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("sketch/ui");
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = require("sketch/settings");
 
 /***/ })
 /******/ ]);
@@ -144,4 +182,6 @@ function fitLayer(textLayer) {
 }
 that['runWithTrim'] = __skpm_run.bind(this, 'runWithTrim');
 that['onRun'] = __skpm_run.bind(this, 'default');
-that['runWithoutTrim'] = __skpm_run.bind(this, 'runWithoutTrim')
+that['runWithoutTrim'] = __skpm_run.bind(this, 'runWithoutTrim');
+that['toggleAutoResizing'] = __skpm_run.bind(this, 'toggleAutoResizing');
+that['onTextChanged'] = __skpm_run.bind(this, 'onTextChanged')

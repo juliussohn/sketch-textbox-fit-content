@@ -6,7 +6,7 @@
     "sketch": ">=3.0"
   },
   "skpm": {
-    "name": "Textbox fit content",
+    "name": "Text box fit content",
     "manifest": "src/manifest.json",
     "main": "sketch-textbox-fit-content.sketchplugin",
     "assets": [

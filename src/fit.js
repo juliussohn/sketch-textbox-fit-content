@@ -1,55 +1,73 @@
 var Group = require('sketch/dom').Group
+var Rectangle = require('sketch/dom').Rectangle
 var Text = require('sketch/dom').Text
-var trim  = true;
-export function runWithTrim(context){
+var UI = require('sketch/ui')
+var Settings = require('sketch/settings')
+var Document = require('sketch/dom').Document
+var document = Document.getSelectedDocument()
+var trim = true;
+
+export function runWithTrim(context) {
 	trim = true;
 	run(context);
 }
-export function runWithoutTrim(context){
+export function runWithoutTrim(context) {
 	trim = false;
 	run(context);
 }
 
-function run( context ) {
-	var selectedLayers = context.selection;
-	var selectedCount = selectedLayers.count();
-
-	if ( selectedCount === 0 ) {
-		context.document.showMessage('No layers selected.');
-	} else {
-		for ( var i = 0; i < selectedCount; i++ ) {
-			var layer = selectedLayers[ i ];
-			checkLayer(layer);
-		}
+export function onTextChanged(context) {
+	var autoResize = Settings.settingForKey('auto-resize')
+	if(autoResize){
+		runWithoutTrim(context)
 	}
 }
 
-function checkLayer( layer ) {
+export function toggleAutoResizing(context) {
+	var autoResize = Settings.settingForKey('auto-resize')
 
+	if(!autoResize){
+		Settings.setSettingForKey('auto-resize', true);
+		UI.message('✅ Text box auto-fit enabled ');
+		runWithoutTrim();
+	}else{
+		Settings.setSettingForKey('auto-resize', false)
+		UI.message('❌ Text box auto-fit disabled');
+	}
+}
 
+export function run(context) {
+	var selectedLayers = document.selectedLayers
+	var selectedCount = selectedLayers.length;
 
-	if(layer.isMemberOfClass(MSTextLayer) === 1){
+	if (selectedCount === 0) {
+		UI.message('No layers selected.')
+	} else {
+		selectedLayers.forEach(layer => checkLayer(layer));
+	}
+}
+
+function checkLayer(layer) {
+	if (layer.type === "Text") {
 		fitLayer(layer)
-	} else if ( layer.isMemberOfClass(MSLayerGroup) === 1  ) {
+	} else if (layer.type === "Group") {
 		var layers = layer.layers();
-		for(var i= 0; i<layers.count(); i++){
+		for (var i = 0; i < layers.count(); i++) {
 			checkLayer(layers[i]);
 		}
-        Group.fromNative(layer).adjustToFit()
+		Group.fromNative(layer).adjustToFit()
 
 	}
 }
 
-function fitLayer( textLayer) {
-	if(trim){
-		var content = textLayer.stringValue();
-		textLayer.setStringValue(content.replace(/^\s+|\s+$/g, '').trim())
+function fitLayer(textLayer) {
+	if (trim) {
+		var content = textLayer.sketchObject.stringValue();
+		textLayer.sketchObject.setStringValue(content.replace(/^\s+|\s+$/g, '').trim())
 	}
 
-    
+	var lineCount = textLayer.fragments.length
+	var baseHeight = textLayer.fragments[lineCount - 1].rect.y + textLayer.fragments[lineCount - 1].rect.height
+	textLayer.sketchObject.frame().height = baseHeight
 
-	var fontSize = textLayer.fontSize();
-	var baselineOffsets = textLayer.immutableModelObject().textLayout().baselineOffsets();
-	var textHeight = baselineOffsets[ baselineOffsets.length - 1 ] + fontSize / 4;
-	textLayer.frame().height = textHeight;
 }

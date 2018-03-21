@@ -1,20 +1,46 @@
 {
   "compatibleVersion": 3,
   "bundleVersion": 1,
-  "commands":[
+  "commands": [
     {
       "script": "fit.js",
       "handler": "runWithTrim",
       "shortcut": "command shift f",
       "name": "Trim and fit text",
-      "identifier": "fitWithTrim"
+      "identifier": "tfc.fitWithTrim"
     },
     {
       "script": "fit.js",
       "handler": "runWithoutTrim",
       "shortcut": "command alt shift f",
       "name": "Fit text",
-      "identifier": "fitWithoutTrim"
+      "identifier": "tfc.fitWithoutTrim"
+    },
+    {
+      "script": "fit.js",
+      "handler": "toggleAutoResizing",
+      "name": "Toggle auto-fit text",
+      "shortcut": "command ctrl shift f",
+      "identifier": "tfc.toggleAutoResizing"
+    },
+    {
+      "script": "fit.js",
+      "handlers": {
+        "actions": {
+          "TextChanged.finish": "onTextChanged"
+        }
+      },
+      "name": "Auto resize",
+      "identifier": "tfc.autoResize"
     }
-  ]
+  ],
+  "menu": {
+    "title": "Textbox fit content",
+    "items": [
+      "tfc.fitWithTrim",
+      "tfc.fitWithoutTrim",
+      "-",
+      "tfc.toggleAutoResizing"
+    ]
+  }
 }

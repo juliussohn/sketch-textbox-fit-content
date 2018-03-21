@@ -7,6 +7,7 @@ This plugin sets the height of a selected text layer or all text layers in a sel
 ## Usage
 Select a text layer or a group containing text layers.
 
+
 **To remove whitespace and linebreaks on the beginning and end of the text:**
 
 Select `Plugins` > `Textbox fit Content` > `Trim and fit text` or press  `⌘`+ `Shift`+`F`
@@ -16,3 +17,21 @@ or
 **To keep all whitespace and linebreaks on the beginning and end of the text:** 
 
 Select `Plugins` > `Textbox fit Content` > `Fit text` or press  `⌘`+`alt`+`Shift`+`F`
+
+Enable the Auto-fit mode to automatically adjust the text box size when it's content changes:  `Plugins` > `Textbox fit Content` > `Toggle auto-fit text` or press  `⌘`+`ctrl`+`Shift`+`F`
+
+
+## Changelog
+
+### 1.3.0
+
+#### Added
+* Auto fit mode: Automatically adjust text box size when it's content changes
+
+### 1.2.0
+
+#### Fixed
+* > 48.1 compatibilty
+
+#### Added
+* Plugin update Support
