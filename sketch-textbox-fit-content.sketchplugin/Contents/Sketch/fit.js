@@ -95,23 +95,23 @@ var Document = __webpack_require__(0).Document;
 var document = Document.getSelectedDocument();
 var trim = true;
 
-function runWithTrim(context) {
+function runWithTrim() {
 	trim = true;
-	run(context);
+	run();
 }
-function runWithoutTrim(context) {
+function runWithoutTrim() {
 	trim = false;
-	run(context);
+	run();
 }
 
-function onTextChanged(context) {
+function onTextChanged() {
 	var autoResize = Settings.settingForKey('auto-resize');
 	if (autoResize) {
-		runWithoutTrim(context);
+		runWithoutTrim();
 	}
 }
 
-function toggleAutoResizing(context) {
+function toggleAutoResizing() {
 	var autoResize = Settings.settingForKey('auto-resize');
 
 	if (!autoResize) {
@@ -124,7 +124,7 @@ function toggleAutoResizing(context) {
 	}
 }
 
-function run(context) {
+function run() {
 	var selectedLayers = document.selectedLayers;
 	var selectedCount = selectedLayers.length;
 

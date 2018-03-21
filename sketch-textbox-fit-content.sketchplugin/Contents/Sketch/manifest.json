@@ -43,7 +43,7 @@
       "tfc.toggleAutoResizing"
     ]
   },
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "This plugin sets the height of a selected text layer or all text layers in a selected group to it's content's height.",
   "name": "Text box fit content",
   "disableCocoaScriptPreprocessor": true,

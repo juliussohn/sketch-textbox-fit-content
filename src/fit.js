@@ -7,23 +7,23 @@ var Document = require('sketch/dom').Document
 var document = Document.getSelectedDocument()
 var trim = true;
 
-export function runWithTrim(context) {
+export function runWithTrim() {
 	trim = true;
-	run(context);
+	run();
 }
-export function runWithoutTrim(context) {
+export function runWithoutTrim() {
 	trim = false;
-	run(context);
+	run();
 }
 
-export function onTextChanged(context) {
+export function onTextChanged() {
 	var autoResize = Settings.settingForKey('auto-resize')
 	if(autoResize){
-		runWithoutTrim(context)
+		runWithoutTrim()
 	}
 }
 
-export function toggleAutoResizing(context) {
+export function toggleAutoResizing() {
 	var autoResize = Settings.settingForKey('auto-resize')
 
 	if(!autoResize){
@@ -36,7 +36,7 @@ export function toggleAutoResizing(context) {
 	}
 }
 
-export function run(context) {
+export function run() {
 	var selectedLayers = document.selectedLayers
 	var selectedCount = selectedLayers.length;
 
