@@ -24,6 +24,10 @@ Select  `Plugins` > `Textbox fit Content` > `Toggle auto-fit text` or press  `‚å
 
 ## Changelog
 
+### 1.4.0
+
+[Fixed] Run auto fit after the text box has been resized.
+
 ### 1.3.0
 
 [New] Auto fit mode: Automatically adjust text box size when it's content changes
