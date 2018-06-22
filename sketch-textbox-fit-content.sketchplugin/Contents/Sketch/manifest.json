@@ -27,7 +27,8 @@
       "script": "fit.js",
       "handlers": {
         "actions": {
-          "TextChanged.finish": "onTextChanged"
+          "TextChanged.finish": "onTextChanged",
+          "HandlerLostFocus": "onHandlerLostFocus"
         }
       },
       "name": "Auto resize",

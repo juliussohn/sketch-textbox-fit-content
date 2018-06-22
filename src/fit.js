@@ -22,6 +22,9 @@ export function onTextChanged() {
 		runWithoutTrim()
 	}
 }
+export function onHandlerLostFocus(e){
+	onTextChanged();
+}
 
 export function toggleAutoResizing() {
 	var autoResize = Settings.settingForKey('auto-resize')

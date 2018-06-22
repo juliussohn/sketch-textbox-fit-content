@@ -84,6 +84,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.runWithTrim = runWithTrim;
 exports.runWithoutTrim = runWithoutTrim;
 exports.onTextChanged = onTextChanged;
+exports.onHandlerLostFocus = onHandlerLostFocus;
 exports.toggleAutoResizing = toggleAutoResizing;
 exports.run = run;
 var Group = __webpack_require__(0).Group;
@@ -109,6 +110,9 @@ function onTextChanged() {
 	if (autoResize) {
 		runWithoutTrim();
 	}
+}
+function onHandlerLostFocus(e) {
+	onTextChanged();
 }
 
 function toggleAutoResizing() {
@@ -184,4 +188,5 @@ that['runWithTrim'] = __skpm_run.bind(this, 'runWithTrim');
 that['onRun'] = __skpm_run.bind(this, 'default');
 that['runWithoutTrim'] = __skpm_run.bind(this, 'runWithoutTrim');
 that['toggleAutoResizing'] = __skpm_run.bind(this, 'toggleAutoResizing');
-that['onTextChanged'] = __skpm_run.bind(this, 'onTextChanged')
+that['onTextChanged'] = __skpm_run.bind(this, 'onTextChanged');
+that['onHandlerLostFocus'] = __skpm_run.bind(this, 'onHandlerLostFocus')
