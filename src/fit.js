@@ -70,7 +70,18 @@ function fitLayer(textLayer) {
 	}
 
 	var lineCount = textLayer.fragments.length
-	var baseHeight = textLayer.fragments[lineCount - 1].rect.y + textLayer.fragments[lineCount - 1].rect.height
-	textLayer.sketchObject.frame().height = baseHeight
+	
+	//add up all line heights
+	var baseHeight = 0;
 
+	for(var i = 0; i < lineCount; i++)
+		baseHeight += textLayer.fragments[i].rect.height;
+	
+	textLayer.sketchObject.frame().height = baseHeight;
+	
+	//also adjust y (for middle/bottom aligned text)
+	var oldY = textLayer.sketchObject.frame().y();
+	var deltaY = textLayer.fragments[0].rect.y;
+
+	textLayer.sketchObject.frame().y = oldY + deltaY;
 }
