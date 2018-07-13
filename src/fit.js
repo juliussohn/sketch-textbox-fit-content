@@ -69,8 +69,13 @@ function fitLayer(textLayer) {
 		textLayer.sketchObject.setStringValue(content.replace(/^\s+|\s+$/g, '').trim())
 	}
 
-	var lineCount = textLayer.fragments.length
-	var baseHeight = textLayer.fragments[lineCount - 1].rect.y + textLayer.fragments[lineCount - 1].rect.height
-	textLayer.sketchObject.frame().height = baseHeight
-
+	var lineCount = textLayer.fragments.length;
+	var baseHeight = textLayer.fragments[lineCount - 1].rect.y + textLayer.fragments[lineCount - 1].rect.height;
+	
+	//also adjust y (for middle/bottom aligned text)
+	var layerY = textLayer.sketchObject.frame().y();
+	var textY = textLayer.fragments[0].rect.y;
+	
+	textLayer.sketchObject.frame().y = layerY + textY;
+	textLayer.sketchObject.frame().height = baseHeight - textY;
 }
